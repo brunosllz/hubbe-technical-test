@@ -1,0 +1,9 @@
+{
+  "extends": "@hubbe-technical-test/typescript-config/api.json",
+  "compilerOptions": {
+    "rootDir": ".",
+    "outDir": "dist"
+  },
+  "include": ["src/"],
+  "exclude": ["node_modules"]
+}
