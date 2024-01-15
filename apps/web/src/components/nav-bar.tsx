@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { NavLink } from './nav-link'
-import { socket } from '@/libs/socket-io'
+import { resourceSocketClient } from '@/libs/socket-io'
 
 const NAV_LINK_ITEMS = [
   {
@@ -19,12 +19,27 @@ export function NavBar() {
   const [isDisabled, setIsDisabled] = useState(false)
 
   useEffect(() => {
-    socket.connect()
+    resourceSocketClient.connect()
 
-    socket.on('user:status', (data) => {
-      setIsDisabled(data.isBlocked)
-    })
-  })
+    resourceSocketClient.emit(
+      'resource:status',
+      {
+        resourceSlug: 'secret-screen',
+      },
+      ({ status }: { status: boolean }) => {
+        console.log(status)
+
+        setIsDisabled(status)
+      },
+    )
+
+    resourceSocketClient.on(
+      'resource:status',
+      ({ status }: { status: boolean }) => {
+        setIsDisabled(status)
+      },
+    )
+  }, [])
 
   return (
     <nav className="flex items-center space-x-8">

@@ -20,8 +20,8 @@ export default function RootLayout({
       <body className="min-h-screen">
         <Header />
 
-        <main className="pt-36 pb-24 w-full max-w-[81rem] mx-auto">
-          {children}
+        <main className="pt-36 pb-24 w-full px-6 min-h-screen">
+          <div className="w-full h-full mx-auto max-w-[81rem]">{children}</div>
         </main>
       </body>
     </html>
