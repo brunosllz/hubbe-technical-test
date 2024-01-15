@@ -1,81 +1,100 @@
-# Turborepo starter
 
-This is an official starter Turborepo.
+<h4 align="center">
+  Hubbe - Tela secreta
+</h4>
 
-## Using this example
+<p align="center">
+  <a href="#--sobre-o-projeto">Sobre</a> •
+  <a href="#-%EF%B8%8F-funcionalidades">Funcionalidades</a> •
+  <a href="#--layout">Layout</a> •
+  <a href="#--tecnologias">Tecnologias</a> •
+  <a href="#--milhas-a-mais">Milhas a mais</a> 
+</p>
 
-Run the following command:
+<br/>
 
-```sh
-npx create-turbo@latest
+![](https://github.com/brunosllz/hubbe-technical-test/blob/main/.github/assets/)
+
+## [](https://github.com/brunosllz/hubbe-technical-test#--sobre-o-projeto) 💻 Sobre o projeto
+
+Projeto desenvolvido para o teste técnico da [Hubbe](https://hubbe.app/), o desafio tem como premissa um projeto Full Stack, que permita  gerenciar o acesso dos usuários a uma tela secreta.
+
+---
+
+## [](https://github.com/brunosllz/hubbe-technical-test#-%EF%B8%8F-funcionalidades) ⚙️ Funcionalidades
+
+- Bloqueio/desbloqueio de recursos
+- Feedback em real-time
+
+---
+
+#### 🧭 Rodando a aplicação
+
+Clone o repositório do projeto:
+```bash
+  $ git clone https://github.com/brunosllz/hubbe-technical-test.git
 ```
 
-## What's inside?
-
-This Turborepo includes the following packages/apps:
-
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-pnpm build
+Este projeto está utilizando MongoDB com banco de dados, caso não tenha uma instância do Mongo rodando na sua máquina, pode subir uma utilizando o docker compose na raiz do projeto:
+```bash
+  # Subir instância do MongoDB
+  $ docker compose up -d
 ```
 
-### Develop
+Copie o .env-example colocando as credências conforme a configuração do seu banco:
+```bash
+  # Copie o .env-example renomeando para .env
+  $ cp .env-example .env
 
-To develop all apps and packages, run the following command:
-
-```
-cd my-turborepo
-pnpm dev
-```
-
-### Remote Caching
-
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
-
-```
-cd my-turborepo
-npx turbo login
+  # Substitua o "<your-user>" e "<your-password>" pelas suas credências
+  - DATABASE_URL="mongodb://<your-user>:<your-password>@localhost:27017/hubbe?authSource=admin&directConnection=true"
 ```
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+Navegue até aplicação node e rode o seed para popular os dados iniciais:
+```bash
+  # Navegar para a api
+  $ cd ./apps/api
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
+  # Roda o Seed
+  $ pnpm prisma db seed
 ```
-npx turbo link
+
+Vá para a raiz do projeto e rode o comando para subi o ambiente de desenvolvimento:
+```bash
+  # Ir para raiz do projeto
+  $ cd ./
+
+  # Subir o ambiente de desenvolvimento
+  $ pnpm run dev
 ```
+---
 
-## Useful Links
+## [](https://github.com/brunosllz/hubbe-technical-test#--layout) 🔖 Layout
 
-Learn more about the power of Turborepo:
+No front-end temos um layout bem simples, onde somente mostro a funcionalidade de bloqueio/desbloqueio implementada, onde o recurso que está sendo gerenciado é a tela secreta em questão, que só poderia ser acessada por um usuário de cada vez.
+ 
+ ![gif](https://github.com/brunosllz/hubbe-technical-test/blob/main/.github/assets/layout-example.gif)
 
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+---
+
+## [](https://github.com/brunosllz/hubbe-technical-test#--tecnologias) 🛠 Tecnologias
+
+As seguintes ferramentas foram usadas na construção do projeto:
+
+- NextJS
+- NodeJS
+- Typescript
+- Socket.io
+- Prisma
+- Jest
+- TailwildCss
+
+
+> Veja o arquivo [package.json](https://github.com/brunosllz/hubbe-technical-test/blob/main/package.json)
+---
+
+#### 📋 Justificativa
+
+Esta solução foi construída pensando no gerenciamento de bloqueio/desbloqueio de recursos, com isso temos um app construído com NodeJs, onde é responsável por fazer o gerenciamento dos recursos. Para que fosse possível ter um feedback em real-time do status do recurso de acordo com o limite de acesso de clientes presetado ao recurso, optei pela utilização do protocolo WS (Web socket), onde possibilita que tenhamos uma comunicação bidirecional e em real-time entre cliente e servidor.
+
+Já em questão de banco de dados, optei pela utilização da "família" NoSQL, tendo em vista de preciso ter uma baixa latência no feedback do status do recurso e um controle dos clientes conectados. Inicialmente para facilitar está comunicação entre DB e a aplicação, estou utilizando o Prisma, o mesmo disponibiliza métodos bult-in para facilitação de operações ao DB, mas como citei anteriormente, "inicialmente", pois a decisão da utilização desta ferramenta foi tomada devido a minha familiaridade com a mesma e o curto período de tempo para a entrega no desafio. Porém com isso em vista optei por um design já mais desacoplado, onde a minha lógica de negócio trabalha de forma isolada de ferramentas externas, portanto caso necessário, futuramente poderia estar facilmente substituindo a ferramenta do Prisma por outra, de forma simplificada sem alterar as funcionalidades da aplicação. 
