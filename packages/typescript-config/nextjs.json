@@ -8,6 +8,6 @@
     "moduleResolution": "Bundler",
     "incremental": true,
     "jsx": "preserve",
-    "noEmit": true
+    "noEmit": true,
   }
 }

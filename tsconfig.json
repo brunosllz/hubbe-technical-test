@@ -1,3 +1,6 @@
 {
-  "extends": "@hubbe-technical-test/typescript-config/base.json"
+  "extends": "@hubbe-technical-test/typescript-config/base.json",
+  "compilerOptions": {
+    "outDir": "./dist" // Specify a different output directory
+  }
 }
