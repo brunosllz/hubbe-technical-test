@@ -7,13 +7,8 @@
   <a href="#--sobre-o-projeto">Sobre</a> •
   <a href="#-%EF%B8%8F-funcionalidades">Funcionalidades</a> •
   <a href="#--layout">Layout</a> •
-  <a href="#--tecnologias">Tecnologias</a> •
-  <a href="#--milhas-a-mais">Milhas a mais</a> 
+  <a href="#--tecnologias">Tecnologias</a>
 </p>
-
-<br/>
-
-![](https://github.com/brunosllz/hubbe-technical-test/blob/main/.github/assets/)
 
 ## [](https://github.com/brunosllz/hubbe-technical-test#--sobre-o-projeto) 💻 Sobre o projeto
 
@@ -41,8 +36,17 @@ Este projeto está utilizando MongoDB com banco de dados, caso não tenha uma in
   $ docker compose up -d
 ```
 
+Instale as dependências do projeto:
+```bash
+  # Instalar dependências
+  $ pnpm install
+```
+
 Copie o .env-example colocando as credências conforme a configuração do seu banco:
 ```bash
+  # Navegar para a api
+  $ cd ./apps/api
+
   # Copie o .env-example renomeando para .env
   $ cp .env-example .env
 
@@ -50,10 +54,10 @@ Copie o .env-example colocando as credências conforme a configuração do seu b
   - DATABASE_URL="mongodb://<your-user>:<your-password>@localhost:27017/hubbe?authSource=admin&directConnection=true"
 ```
 
-Navegue até aplicação node e rode o seed para popular os dados iniciais:
+Rode o seed para popular a carga de dados iniciais:
 ```bash
-  # Navegar para a api
-  $ cd ./apps/api
+  # Rode o schema do prisma
+  $ pnpm prisma generate
 
   # Roda o Seed
   $ pnpm prisma db seed
@@ -62,7 +66,7 @@ Navegue até aplicação node e rode o seed para popular os dados iniciais:
 Vá para a raiz do projeto e rode o comando para subi o ambiente de desenvolvimento:
 ```bash
   # Ir para raiz do projeto
-  $ cd ./
+  $ cd ../../
 
   # Subir o ambiente de desenvolvimento
   $ pnpm run dev
@@ -88,10 +92,6 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - Prisma
 - Jest
 - TailwildCss
-
-
-> Veja o arquivo [package.json](https://github.com/brunosllz/hubbe-technical-test/blob/main/package.json)
----
 
 #### 📋 Justificativa
 
