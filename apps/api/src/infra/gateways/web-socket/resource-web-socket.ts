@@ -17,7 +17,6 @@ resourceIo.on('connection', (socket) => {
     async ({ resourceSlug }: { resourceSlug: string }, callback) => {
       // TODO: implement a guard to check if the params are valid.
 
-      console.log(resourceSlug)
       if (!resourceSlug) {
         return socket.emit(event.ERROR, {
           message: 'Resource slug is required',

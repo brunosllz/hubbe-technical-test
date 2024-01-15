@@ -17,6 +17,7 @@ async function main() {
   const resource = await prisma.resource.findMany({
     include: { connectedClients: true },
   })
+
   const client = await prisma.client.findMany({})
 
   console.log({ resource, client })
