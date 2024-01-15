@@ -1,8 +1,16 @@
 {
   "extends": "@hubbe-technical-test/typescript-config/api.json",
   "compilerOptions": {
-    "rootDir": ".",
-    "outDir": "dist"
+    "rootDir": ".", 
+    "outDir": "dist",
+    "baseUrl": "./", 
+    "paths": {
+      "@/*": ["./src/*"],
+      "@/application/*": ["./src/application/*"],
+      "@/core/*": ["./src/core/*"],
+      "@/infra/*": ["./src/infra/*"]
+    },
+    "types": ["node", "jest"]
   },
   "include": ["src/"],
   "exclude": ["node_modules"]

@@ -1,5 +1,4 @@
-import express from 'express'
+import '@/infra/gateways/web-socket'
+import { server } from '@/infra/http'
 
-const app = express()
-
-app.listen('3333', () => console.log(`🌱 Server is running on port 3333`))
+server.listen('3333', () => console.log(`🌱 Server is running on port 3333`))

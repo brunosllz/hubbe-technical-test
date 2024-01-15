@@ -3,8 +3,9 @@
   "display": "Api",
   "extends": "./base.json",
   "compilerOptions": {
-    "target": "ES2020",
     "noEmit": false,
-    "sourceMap": true
+    "sourceMap": true,
+    "moduleResolution": "Node",
+    "module": "CommonJS",
   }
 }

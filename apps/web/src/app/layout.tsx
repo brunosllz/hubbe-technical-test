@@ -17,13 +17,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={inter.className}>
-      <body className='min-h-screen'>
-        <Header/>
-        
-        <main className='pt-36 pb-24 w-full max-w-[81rem] mx-auto'>
+      <body className="min-h-screen">
+        <Header />
+
+        <main className="pt-36 pb-24 w-full max-w-[81rem] mx-auto">
           {children}
         </main>
-     </body>
+      </body>
     </html>
   )
 }
